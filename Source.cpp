@@ -11,56 +11,63 @@ int main()
 	system("title DATABASE");
 	int pause;
 	cout << "Enter the file name" << endl;
-	string filename;
-	cin >> filename;
+	string filename = "testDB.txt";
+	//cin >> filename;
 	vector<string>* Data = ParseFile(filename);
 
-	vector<STUDENT*> Students;
+	vector<ELEMENT*> Elements;
 	for (int i = 0; i < Data->size(); ++i)
 	{
-		STUDENT* test = new STUDENT((*Data)[i] , i);
-		Students.push_back(test);
+		ELEMENT* test = new ELEMENT((*Data)[i] , i);
+		Elements.push_back(test);
 	}
 
-	TABLE table(Students);
+
+	TABLE table(Elements);
 	
 	system("cls");
 	table.PrintIntoConsole();
 	cout << endl;
 	cin >> pause;
 
+	//system("cls");
+	table.AddElement();
+	table.PrintIntoConsole();
+	cout << endl;
+	cout << endl << "New element was added" << endl;
+	cin >> pause;
+
+	table.DeleteElementById(1);
 	system("cls");
-	table.AddStudent();
+	cout << endl << "Element with id(1) was deleted" << endl;
 	table.PrintIntoConsole();
 	cout << endl;
 	cin >> pause;
 
-	table.DeleteStudentById(1);
 	system("cls");
-	table.PrintIntoConsole();
-	cout << endl;
-	cin >> pause;
-
-	system("cls");
+	cout << "Sort by name: " << endl;
 	table.Sort(1);
 	table.PrintIntoConsole();
 	cout << endl;
 	cin >> pause;
 
 	system("cls");
-	table.Sort(5);
+	cout << "Sort by id: " << endl;
+	table.Sort(0);
 	table.PrintIntoConsole();
 	cout << endl;
 	cin >> pause;
 
 	system("cls");
-	STUDENT* student = table.FindStudentById(2);
-	student->PrintConsole();
+	cout << "found element id(2): ";
+	ELEMENT* element = table.FindElementById(2);
+	element->PrintConsole();
 	cout << endl;
 	cin >> pause;
 
-	table.ChangeMarkById(0, 3);
+	table.ChangePhoneById(2, string("70000000000"));
 	system("cls");
+	cout << "Element id(2) changed phone:" << endl;
 	table.PrintIntoConsole();
 	cout << endl;
 	cin >> pause;
