@@ -3,24 +3,12 @@
 
 enum KEYS {
 	name,
-	group,
 	phone,
-	lessonName,
-	teacherName,
-	teacherEmail,
-	date,
-	mark
-};
-
-vector<string> keys = {
-	"name",
-	"group",
-	"phone",
-	"lessonName",
-	"teachername",
-	"teacherEmail",
-	"date",
-	"mark"
+	email,
+	salary,
+	managerName,
+	managerPhone,
+	date
 };
 
 int StringToInt(string str) // conversation string to integer
@@ -73,8 +61,7 @@ bool isCorrect(string str, int type)
 	string buf;
 	switch (type) {
 	case name:
-	case lessonName:
-	case teacherName:
+	case managerName:
 		while (str[i] != '\0')
 		{
 			if (!isalpha(str[i]))
@@ -82,9 +69,9 @@ bool isCorrect(string str, int type)
 			++i;
 		}
 		break;
-	case group:
+	case managerPhone:
 	case phone:
-	case mark:
+	case salary:
 		while (str[i] != '\0')
 		{
 			if (!isdigit(str[i]))
@@ -92,7 +79,7 @@ bool isCorrect(string str, int type)
 			++i;
 		}
 		break;
-	case teacherEmail:
+	case email:
 		while (str[i] != '@' && str[i] != '\0')
 		{
 			if (!isalpha(str[i]) && !isdigit(str[i]) && str[i] != '.')
@@ -198,20 +185,3 @@ vector<string>* ParseFile(string filename)
 	return result;
 }
 
-/*
-void PrintStudent(STUDENT* student)
-{
-	cout << student->name << " " << student->group << " " << student->phone << " " << student->lessonName << " " << student->teacherName << " " << student->teacherEmail << " " << student->date << " " << student->mark << endl;
-
-}
-
-void PrintIntoFile(string filename, vector<STUDENT*>* students)
-{
-	fstream out(filename);
-	for (int i = 0; i < students->size(); ++i)
-	{
-		STUDENT* student = (*students)[i];
-		out << student->name << " " << student->group << " " << student->phone << " " << student->lessonName << " " << student->teacherName << " " << student->teacherEmail << " " << student->date << " " << student->mark << endl;
-	}
-}
-*/
